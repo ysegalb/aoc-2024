@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 	"fmt"
 	"strconv"
 )
@@ -168,7 +168,7 @@ func (d *Drive) calculateChecksum() int {
 }
 
 func GetCompactedChecksum(contentFile string, wholeSector bool) int {
-	lines := aoc2024.ReadLines(contentFile)
+	lines := utils.ReadLines(contentFile)
 	drive := processLine(lines[0])
 	if wholeSector {
 		drive.Defrag()

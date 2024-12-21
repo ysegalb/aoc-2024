@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 )
 
 type Report struct {
@@ -33,7 +33,7 @@ func safeReport(levels []int) bool {
 	for i := 1; i < len(levels); i++ {
 		diff := levels[i] - levels[i-1]
 
-		if diff == 0 || abs(diff) > 3 {
+		if diff == 0 || utils.Abs(diff) > 3 {
 			return false
 		}
 		if incremental && levels[i] < levels[i-1] {
@@ -47,11 +47,11 @@ func safeReport(levels []int) bool {
 }
 
 func getReports(contentFile string) []Report {
-	lines := aoc2024.ReadLines(contentFile)
+	lines := utils.ReadLines(contentFile)
 
 	reports := []Report{}
 	for _, line := range lines {
-		reports = append(reports, Report{Levels: aoc2024.SplitLineIntoNumbers(line)})
+		reports = append(reports, Report{Levels: utils.SplitLineIntoNumbers(line, `\s+`)})
 	}
 
 	return reports
@@ -68,11 +68,4 @@ func GetSafeReports(contentFile string, dampener ...bool) int {
 	}
 
 	return safeReports
-}
-
-func abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
 }

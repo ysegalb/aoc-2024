@@ -1,6 +1,8 @@
 package main
 
-import "aoc2024"
+import (
+	"aoc2024/utils"
+)
 
 func containsWord(x int, y int, dx int, dy int, searchFor string, lines Lines) bool {
 	word := ""
@@ -52,7 +54,7 @@ func countCrossMASShapes(lines Lines) int {
 }
 
 func GetXmasOccurrenceCount(contentFile string, shapeSearch bool) int {
-	lines := Lines{aoc2024.ReadLines(contentFile)}
+	lines := Lines{utils.ReadLines(contentFile)}
 	if shapeSearch {
 		return countCrossMASShapes(lines)
 	} else {

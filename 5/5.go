@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 	"regexp"
 	"slices"
 	"strconv"
@@ -9,7 +9,7 @@ import (
 )
 
 func GetPageOrdering(contentFile string, pickCorrectOnes bool) int {
-	lines := aoc2024.ReadLines(contentFile)
+	lines := utils.ReadLines(contentFile)
 
 	rules, prints := processLines(lines)
 

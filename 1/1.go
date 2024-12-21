@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 	"math"
 	"sort"
 )
@@ -9,9 +9,9 @@ import (
 func GetLocationDistances(locationsFile string) int {
 	aList := []int{}
 	bList := []int{}
-	locations := aoc2024.ReadLines(locationsFile)
+	locations := utils.ReadLines(locationsFile)
 	for _, location := range locations {
-		nums := aoc2024.SplitLineIntoNumbers(location)
+		nums := utils.SplitLineIntoNumbers(location, `\s+`)
 		aList = append(aList, nums[0])
 		bList = append(bList, nums[1])
 	}
@@ -30,9 +30,9 @@ func GetLocationDistances(locationsFile string) int {
 func GetSimilarityScore(locationsFile string) int {
 	aList := []int{}
 	bList := []int{}
-	locations := aoc2024.ReadLines(locationsFile)
+	locations := utils.ReadLines(locationsFile)
 	for _, location := range locations {
-		nums := aoc2024.SplitLineIntoNumbers(location)
+		nums := utils.SplitLineIntoNumbers(location, `\s+`)
 		aList = append(aList, nums[0])
 		bList = append(bList, nums[1])
 	}

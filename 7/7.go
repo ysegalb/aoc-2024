@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 	"fmt"
 	"regexp"
 	"strconv"
@@ -9,7 +9,7 @@ import (
 )
 
 func GetValidEquationTotalSum(contentFile string, concatenate bool) int {
-	lines := aoc2024.ReadLines(contentFile)
+	lines := utils.ReadLines(contentFile)
 	result := 0
 	for _, line := range lines {
 		equation := parseEquation(line)
@@ -30,11 +30,11 @@ func parseEquation(line string) *Equation {
 	re := regexp.MustCompile(`(\d+)+`)
 	matches := re.FindAllString(splitLine[1], -1)
 	equation := &Equation{
-		Result:   aoc2024.MustAtoi(splitLine[0]),
+		Result:   utils.MustAtoi(splitLine[0]),
 		Operands: make([]int, len(matches)),
 	}
 	for i, s := range matches {
-		equation.Operands[i] = aoc2024.MustAtoi(s)
+		equation.Operands[i] = utils.MustAtoi(s)
 	}
 	return equation
 }

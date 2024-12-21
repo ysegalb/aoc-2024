@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 	"fmt"
 	"regexp"
 	"strconv"
@@ -53,7 +53,7 @@ func processOperation(match string) Operation {
 }
 
 func GetMultiplicationAddedTotal(fileName string, instructionsEnabled bool) int {
-	lines := aoc2024.ReadLines(fileName)
+	lines := utils.ReadLines(fileName)
 	operations := parseLines(lines, instructionsEnabled)
 
 	result := 0

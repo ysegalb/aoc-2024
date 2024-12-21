@@ -1,14 +1,10 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 )
 
 const EmptyFrequency = "."
-
-type Position struct {
-	X, Y int
-}
 
 type Cell struct {
 	Frequency string
@@ -17,7 +13,7 @@ type Cell struct {
 
 type Board struct {
 	Cells       [][]Cell
-	Frequencies map[string][]Position
+	Frequencies map[string][]utils.Point
 }
 
 func (b *Board) CountAntinodes() int {
@@ -33,7 +29,7 @@ func (b *Board) CountAntinodes() int {
 }
 
 func GetTotalAntinodeCount(contentFile string, withHarmonics bool) int {
-	lines := aoc2024.ReadLines(contentFile)
+	lines := utils.ReadLines(contentFile)
 	board := processFrequencies(lines, withHarmonics)
 	board.calculateAntinodes(withHarmonics)
 	return board.CountAntinodes()
@@ -42,16 +38,16 @@ func GetTotalAntinodeCount(contentFile string, withHarmonics bool) int {
 func processFrequencies(lines []string, withHarmonics bool) Board {
 	board := Board{
 		Cells:       make([][]Cell, len(lines)),
-		Frequencies: make(map[string][]Position),
+		Frequencies: make(map[string][]utils.Point),
 	}
 	for i, line := range lines {
 		board.Cells[i] = make([]Cell, len(line))
 		for j, ch := range line {
 			if EmptyFrequency != string(ch) {
 				if _, ok := board.Frequencies[string(ch)]; !ok {
-					board.Frequencies[string(ch)] = make([]Position, 0)
+					board.Frequencies[string(ch)] = make([]utils.Point, 0)
 				}
-				board.Frequencies[string(ch)] = append(board.Frequencies[string(ch)], Position{i, j})
+				board.Frequencies[string(ch)] = append(board.Frequencies[string(ch)], utils.Point{X: i, Y: j})
 			}
 			board.Cells[i][j].Frequency = string(ch)
 			board.Cells[i][j].Antinode = withHarmonics && string(ch) != EmptyFrequency

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"aoc2024"
+	"aoc2024/utils"
 	"fmt"
 )
 
 func GetGuardLocations(contentFile string, detectLoop bool) int {
-	lines := aoc2024.ReadLines(contentFile)
+	lines := utils.ReadLines(contentFile)
 	board := newBoard(lines)
 	if detectLoop {
 		return board.findLoopPositions()
